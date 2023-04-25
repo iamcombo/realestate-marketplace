@@ -32,7 +32,7 @@ const HeaderComponent = () => (
               <Link href='/'>
                 <Text weight={500}>Buy</Text>
               </Link>
-              <Link href='/'>
+              <Link href='/listing/selectType'>
                 <Text weight={500}>Sell</Text>
               </Link>
               <Link href='/'>

@@ -11,7 +11,7 @@ const Explore = () => (
     </Group>
     <Grid columns={24}>
       { data.map((i) => 
-        <Col md={6}>
+        <Col md={6} key={i.title}>
           <CardItem
             author={{
               description: '',
