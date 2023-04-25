@@ -125,6 +125,7 @@ const Listing = () => {
           <SimpleGrid cols={2}>
             <MultiSelect
               label='Amenities'
+              placeholder="Please select amenities"
               data={[]}
               size="md"
               radius={8}
@@ -132,6 +133,7 @@ const Listing = () => {
             />
             <MultiSelect
               label='Property feature'
+              placeholder="Please select property feature"
               data={[]}
               size="md"
               radius={8}
@@ -139,6 +141,7 @@ const Listing = () => {
             />
             <MultiSelect
               label='Security'
+              placeholder="Please select security"
               data={[]}
               size="md"
               radius={8}
@@ -146,6 +149,7 @@ const Listing = () => {
             />
             <MultiSelect
               label='Views'
+              placeholder="Please select views"
               data={[]}
               size="md"
               radius={8}

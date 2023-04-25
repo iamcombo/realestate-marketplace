@@ -16,7 +16,7 @@ import {
   IconFlame
 } from '@tabler/icons-react';
 import { faker } from '@faker-js/faker';
-import { Col, Grid, Group, Spoiler, Text, Title } from '@mantine/core';
+import { Col, Grid, Group, Space, Spoiler, Text, Title } from '@mantine/core';
 import { useIsClient } from '@/hooks';
 
 const PropertyInfo = () => (
@@ -67,7 +67,8 @@ const PropertyInfo = () => (
       </Col>
     </Grid>
 
-    <Title order={4} mb={16} mt={32}>Highlight</Title>
+    <Space h={40} />
+    <Title order={4} mb={16}>Highlight</Title>
     <Grid columns={24}>
       <Col md={8}>
         <Group spacing={8} align='center'>
@@ -95,7 +96,8 @@ const PropertyInfo = () => (
       </Col>
     </Grid>
 
-    <Title order={4} mb={16} mt={32}>Property Feature</Title>
+    <Space h={40} />
+    <Title order={4} mb={16}>Property Feature</Title>
     <Grid columns={24}>
       <Col md={8}>
         <Group spacing={8} align='center'>
@@ -123,7 +125,8 @@ const PropertyInfo = () => (
       </Col>
     </Grid>
 
-    <Title order={4} mb={16} mt={32}>Security</Title>
+    <Space h={40} />
+    <Title order={4} mb={16}>Security</Title>
     <Grid columns={24}>
       <Col md={8}>
         <Group spacing={8} align='center'>
@@ -151,7 +154,8 @@ const PropertyInfo = () => (
       </Col>
     </Grid>
 
-    <Grid columns={24} mt={32}>
+    <Space h={40} />
+    <Grid columns={24}>
       <Col md={8}>
         <Text weight={600}>Description</Text>
       </Col>

@@ -6,6 +6,7 @@ import { generateAddress } from "@/utils";
 import { Badge, Button, Card, Col, Grid, Group, Image, Text } from "@mantine/core";
 import { IconAffiliate, IconBath, IconBed, IconBoxModel2, IconHeart, IconUsers } from "@tabler/icons-react";
 import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 
 const CardFeature = () => {
   const autoplay = useRef(Autoplay({ delay: 2000 }));
@@ -78,7 +79,9 @@ const CardFeature = () => {
           </Group>
           <Group mt={24} position="apart">
             <Text fz={12} c='dimmed'>Listing provided by combo</Text>
-            <Button color='slate.8' radius={8}>View detail</Button>
+            <Link href='/property/1'>
+              <Button radius={8}>View detail</Button>
+            </Link>
           </Group>
         </Col>
       </Grid>

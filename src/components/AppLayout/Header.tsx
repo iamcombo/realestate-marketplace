@@ -26,7 +26,9 @@ const HeaderComponent = () => {
       <Container size={1280}>
         <Grid columns={24} align="center" justify="space-between">
           <Col span={8}>
-            <Image alt='' src={logo} width={55} height={55} />
+            <Link href='/'>
+              <Image alt='' src={logo} width={55} height={55} />
+            </Link>
           </Col>
           <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
             <Col md={8}>
