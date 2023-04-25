@@ -78,7 +78,7 @@ const CardFeature = () => {
           </Group>
           <Group mt={24} position="apart">
             <Text fz={12} c='dimmed'>Listing provided by combo</Text>
-            <Button color='dark.4' radius={8}>View detail</Button>
+            <Button color='slate.8' radius={8}>View detail</Button>
           </Group>
         </Col>
       </Grid>

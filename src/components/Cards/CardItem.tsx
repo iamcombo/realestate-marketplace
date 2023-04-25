@@ -51,7 +51,7 @@ export const CardItem = ({
   const { classes, theme } = useStyles();
 
   return (
-    <Card withBorder padding="lg" radius="md" className={classes.card}>
+    <Card withBorder padding="lg" radius="md" shadow='sm' className={classes.card}>
       <Card.Section mb="sm">
         <Image src={image} alt={title} height={180} />
       </Card.Section>

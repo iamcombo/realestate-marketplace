@@ -16,15 +16,18 @@
     "@mantine/core": "^6.0.8",
     "@mantine/hooks": "^6.0.8",
     "@mantine/next": "^6.0.8",
+    "@rainbow-me/rainbowkit": "^0.12.9",
     "@react-google-maps/api": "^2.18.1",
     "@tabler/icons-react": "^2.17.0",
     "chart.js": "^4.2.1",
     "embla-carousel-autoplay": "^7.1.0",
     "embla-carousel-react": "^7.1.0",
+    "ethers": "^5",
     "next": "13.3.1",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "wagmi": "^0.12.12"
   },
   "devDependencies": {
     "@types/node": "18.15.13",

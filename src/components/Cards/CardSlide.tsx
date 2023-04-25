@@ -20,7 +20,7 @@ const CardSlide = ({ image, title, category }: CardProps) => (
     h={400}
   >
     <Overlay
-      gradient="linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 60%)"
+      gradient="linear-gradient(145deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 70%)"
       opacity={0.8}
       zIndex={0}
       radius={16}
