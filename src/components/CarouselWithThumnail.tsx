@@ -1,7 +1,8 @@
-import { data } from "@/constants/data";
-import { Carousel, Embla } from "@mantine/carousel";
-import { Col, Grid, Image, SimpleGrid } from "@mantine/core";
 import { useState } from "react";
+import type { Embla } from "@mantine/carousel";
+import { Carousel } from "@mantine/carousel";
+import { Col, Grid, Image, SimpleGrid } from "@mantine/core";
+import { data } from "@/constants/data";
 
 const CarouselWithThumnail = () => {
   const [embla, setEmbla] = useState<Embla | null>(null);

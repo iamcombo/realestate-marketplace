@@ -55,7 +55,9 @@ const HeaderComponent = () => {
           <Col span={12} md={8}>
             <Group position="right">
               <IconBell stroke={1.5} />
-              <Avatar radius='xl' src='https://avatars.githubusercontent.com/u/10353856?s=460&u=88394dfd67727327c1f7670a1764dc38a8a24831&v=4' />
+              <Link href='/profile'>
+                <Avatar radius='xl' src='https://avatars.githubusercontent.com/u/10353856?s=460&u=88394dfd67727327c1f7670a1764dc38a8a24831&v=4' />
+              </Link>
             </Group>
           </Col>
         </Grid>
