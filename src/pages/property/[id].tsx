@@ -7,6 +7,7 @@ import { Bar } from "react-chartjs-2";
 import { faker } from '@faker-js/faker';
 import { BarElement, CategoryScale, Chart, LinearScale } from "chart.js";
 import { PropertyInfo } from "@/components";
+import { DateInput, DateTimePicker } from "@mantine/dates";
 
 Chart.register(CategoryScale, LinearScale, BarElement);
 const center = {
@@ -50,14 +51,13 @@ const PropertyDetail = () => {
 
   return (
     <Container size={1280} my={40}>
+      <ImageDisplay />
       <Grid columns={24} gutter={40} justify='space-between'>
         <Col md={18}>
-          <ImageDisplay />
           <Group position="apart" align="start">
             <div>
               <Text weight={600} size={32}>565 Broome Str, NY</Text>
               <Text>Williamsbridge, Bronx</Text>
-              <Text fz={16} weight={800} c='blue' mt={16}>$400,500 USD</Text>
             </div>
             <Group mt={16}>
               <IconHeart stroke={1.5} color='blue' />
@@ -69,7 +69,20 @@ const PropertyDetail = () => {
           <PropertyInfo />
         </Col>
         <Col md={6}>
-          
+          <Card withBorder radius={16}>
+            <Text color='dimmed'>Price</Text>
+            <Text fz={24} weight={800} c='primary.6'>$400,500 USD</Text>
+            <Button fullWidth size="md" mt={24} radius={8}>Apply now</Button>
+            <Divider my={16} />
+            <Text weight={600} mb={8}>Request a tour</Text>
+            <DateInput
+              placeholder="Pick date and time"
+              size="md"
+              radius={8}
+            />
+            <Button fullWidth variant="outline" size="md" radius={8} my={16}>Book a tour</Button>
+            <Text weight='lighter' fz={12}>* It is free with no obligation - cancel anytime</Text>
+          </Card>
           {/* <Text my={16} c='dimmed'>Price History</Text>
           <Bar
             options={{

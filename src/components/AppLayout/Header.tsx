@@ -24,10 +24,10 @@ const HeaderComponent = () => {
       withBorder
     >
       <Container size={1280}>
-        <Grid columns={24} align="center" justify="space-between">
+        <Grid columns={24} align="center" justify="space-between" h={70}>
           <Col span={8}>
             <Link href='/'>
-              <Image alt='' src={logo} width={55} height={55} />
+              <Image alt='' src={logo} height={30} />
             </Link>
           </Col>
           <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>

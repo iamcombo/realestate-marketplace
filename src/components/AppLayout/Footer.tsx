@@ -8,11 +8,11 @@ const Footer = () => (
     <Container size={1280} py={40}>
       <Grid columns={24} align="center" justify="space-between">
         <Col span={8}>
-          <Group spacing={2}>
-            <Image alt='' src={logo} width={55} height={55} />
-            <Title order={5}>WARDIERE INC.</Title>
+          <Group spacing={8}>
+            <Image alt='' src={logo} height={30} />
+            <Title order={5} c='primary.7'>WARDIERE INC.</Title>
           </Group>
-          <Text c='dimmed'>
+          <Text c='dimmed' mt={8}>
             Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
           </Text>
         </Col>

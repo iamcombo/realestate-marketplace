@@ -16,11 +16,37 @@ import {
   IconFlame
 } from '@tabler/icons-react';
 import { faker } from '@faker-js/faker';
-import { Col, Grid, Group, Space, Spoiler, Text, Title } from '@mantine/core';
+import { Avatar, Button, Card, Col, Grid, Group, Space, Spoiler, Text, Title } from '@mantine/core';
 import { useIsClient } from '@/hooks';
 
 const PropertyInfo = () => (
   <div>
+    <Grid columns={24}>
+      <Col md={8}>
+        <Text weight={600}>Description</Text>
+      </Col>
+      <Col md={16}>
+        <Spoiler maxHeight={100} showLabel="Show more" hideLabel="Hide">
+          <Text c='dimmed'>{useIsClient() && faker.lorem.paragraph(10)}</Text>
+        </Spoiler>
+      </Col>
+    </Grid>
+    <Card withBorder radius={8} mt={8}>
+      <Text weight={500} color="dimmed">Listed by property owner</Text>
+      <Group mt={8} position='apart'>
+        <Group>
+          <Avatar src='https://avatars.githubusercontent.com/u/10353856?s=460&u=88394dfd67727327c1f7670a1764dc38a8a24831&v=4' radius="xl" size="lg" />
+          <div>
+            <Text weight={600}>Jonh Wick</Text>
+            <Text fz={14} color='dimmed'>Sale agent</Text>
+          </div>
+        </Group>
+        <Button size='md' px={24} radius={8}>Contact</Button>
+      </Group>
+    </Card>
+    
+    <Space h={40} />
+    
     <Title order={4} mb={16}>Project Overview</Title>
     <Grid columns={24}>
       <Col md={8}>
@@ -151,18 +177,6 @@ const PropertyInfo = () => (
           <IconFireHydrant color='blue' stroke={1.5} size={20} />
           <Text weight={600} size={14}>Fire sprinkler system</Text>
         </Group>
-      </Col>
-    </Grid>
-
-    <Space h={40} />
-    <Grid columns={24}>
-      <Col md={8}>
-        <Text weight={600}>Description</Text>
-      </Col>
-      <Col md={16}>
-        <Spoiler maxHeight={100} showLabel="Show more" hideLabel="Hide">
-          <Text c='dimmed'>{useIsClient() && faker.lorem.paragraph(10)}</Text>
-        </Spoiler>
       </Col>
     </Grid>
   </div>
