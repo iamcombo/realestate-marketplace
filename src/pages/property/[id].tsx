@@ -1,6 +1,6 @@
 import ImageDisplay from "@/components/Interfaces/PropertyDetail/ImageDisplay";
 import { Avatar, Button, Card, Col, Container, Divider, Grid, Group, Rating, Space, Spoiler, Text } from "@mantine/core";
-import { IconBath, IconBed, IconDots, IconHeart, IconPhoneFilled, IconShare3 } from "@tabler/icons-react";
+import { IconBath, IconBed, IconDots, IconHeart, IconMapPinFilled, IconPhoneFilled, IconShare3 } from "@tabler/icons-react";
 import { GoogleMap, Marker, useJsApiLoader, useLoadScript } from '@react-google-maps/api';
 import React from "react";
 import { Bar } from "react-chartjs-2";
@@ -57,7 +57,10 @@ const PropertyDetail = () => {
           <Group position="apart" align="start">
             <div>
               <Text weight={600} size={32}>565 Broome Str, NY</Text>
-              <Text>Williamsbridge, Bronx</Text>
+              <Group align="center" spacing={4}>
+                <IconMapPinFilled fill='gray' />
+                <Text>Williamsbridge, Bronx</Text>
+              </Group>
             </div>
             <Group mt={16}>
               <IconHeart stroke={1.5} color='blue' />
@@ -69,7 +72,7 @@ const PropertyDetail = () => {
           <PropertyInfo />
         </Col>
         <Col md={6}>
-          <Card withBorder radius={16}>
+          <Card withBorder radius={16} sx={{ position: 'initial' }}>
             <Text color='dimmed'>Price</Text>
             <Text fz={24} weight={800} c='primary.6'>$400,500 USD</Text>
             <Button fullWidth size="md" mt={24} radius={8}>Apply now</Button>

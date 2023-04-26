@@ -7,6 +7,7 @@ import {
   Header,
   MediaQuery,
   Text,
+  Title,
 } from "@mantine/core";
 import Link from "next/link";
 import Image from "next/image";
@@ -27,26 +28,26 @@ const HeaderComponent = () => {
         <Grid columns={24} align="center" justify="space-between" h={70}>
           <Col span={8}>
             <Link href='/'>
-              <Image alt='' src={logo} height={30} />
+              <Group spacing={4}>
+                <Image alt='' src={logo} height={55} />
+                <Title order={4}>RealEstate INC.</Title>
+              </Group>
             </Link>
           </Col>
           <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
             <Col md={8}>
-              <Group position="center">
-                <Link href='/'>
-                  <Text weight={isPath('/') ? 600 : 500}>Home</Text>
-                </Link>
-                <Link href='/'>
-                  <Text weight={500}>Buy</Text>
+              <Group position="center" spacing={24}>
+                <Link href='/buy'>
+                  <Text weight={isPath('/buy') ? 800 : 500}>Buy</Text>
                 </Link>
                 <Link href='/listing/selectType'>
                   <Text weight={isPath('/listing') ? 600 : 500}>Sell</Text>
                 </Link>
                 <Link href='/'>
-                  <Text weight={500}>Rent</Text>
+                  <Text weight={isPath('/rent') ? 600 : 500}>Rent</Text>
                 </Link>
                 <Link href='/'>
-                  <Text weight={500}>Contact</Text>
+                  <Text weight={isPath('/about') ? 600 : 500}>About</Text>
                 </Link>
               </Group>
             </Col>

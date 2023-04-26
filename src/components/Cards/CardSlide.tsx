@@ -36,7 +36,7 @@ const CardSlide = ({ image, title, category }: CardProps) => (
               {title}
             </Title>
           </div>
-          <Button variant="white" color="dark" mt={24}>
+          <Button mt={24} size="md" radius={8} variant="white" color="dark">
             Book a tour
           </Button>
         </Col>

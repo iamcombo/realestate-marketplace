@@ -56,37 +56,6 @@ export const CardItem = ({
         <Image src={image} alt={title} height={180} />
       </Card.Section>
 
-      <Group>
-        {/* <Badge>{category}</Badge> */}
-        <div>
-          <Group spacing={0}>
-            <ActionIcon>
-              <IconBoxModel2 color={theme.primaryColor} size="1.2rem" stroke={1.5} />
-            </ActionIcon>
-            <Text fz={10} fw={500}>678 m²</Text>
-          </Group>
-          <Text fz={10}>Living room</Text>
-        </div>
-        <div>
-          <Group spacing={0}>
-            <ActionIcon>
-              <IconBed color={theme.primaryColor} size="1.2rem" stroke={1.5} />
-            </ActionIcon>
-            <Text fz={10} fw={500}>3 room</Text>
-          </Group>
-          <Text fz={10}>Bed room</Text>
-        </div>
-        <div>
-          <Group spacing={0}>
-            <ActionIcon>
-              <IconBath color={theme.primaryColor} size="1.2rem" stroke={1.5} />
-            </ActionIcon>
-            <Text fz={10} fw={500}>2 room</Text>
-          </Group>
-          <Text fz={10}>Bath room</Text>
-        </div>
-      </Group>
-
       <Text fw={700} className={classes.title} mt="xs" truncate>
         {title}
       </Text>
@@ -105,7 +74,7 @@ export const CardItem = ({
       </Group>
 
       <Card.Section className={classes.footer}>
-        <Group position="apart">
+        {/* <Group position="apart">
           <Text fz="xs" c="dimmed">
             {footer}
           </Text>
@@ -120,6 +89,35 @@ export const CardItem = ({
               <IconShare size="1.2rem" color={theme.colors.blue[6]} stroke={1.5} />
             </ActionIcon>
           </Group>
+        </Group> */}
+        <Group position='apart'>
+          <div>
+            <Group spacing={0}>
+              <ActionIcon>
+                <IconBoxModel2 color={theme.primaryColor} size="1.2rem" stroke={1.5} />
+              </ActionIcon>
+              <Text fz={10} fw={500}>678 m²</Text>
+            </Group>
+            <Text fz={10} fw={600} c='dimmed'>Living room</Text>
+          </div>
+          <div>
+            <Group spacing={0}>
+              <ActionIcon>
+                <IconBed color={theme.primaryColor} size="1.2rem" stroke={1.5} />
+              </ActionIcon>
+              <Text fz={10} fw={500}>3 room</Text>
+            </Group>
+            <Text fz={10} fw={600} c='dimmed'>Bed room</Text>
+          </div>
+          <div>
+            <Group spacing={0}>
+              <ActionIcon>
+                <IconBath color={theme.primaryColor} size="1.2rem" stroke={1.5} />
+              </ActionIcon>
+              <Text fz={10} fw={500}>2 room</Text>
+            </Group>
+            <Text fz={10} fw={600} c='dimmed'>Bath room</Text>
+          </div>
         </Group>
       </Card.Section>
     </Card>

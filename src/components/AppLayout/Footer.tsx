@@ -4,12 +4,12 @@ import logo from '@/assets/logo.png';
 import { IconMailFilled, IconMapPinFilled, IconPhoneFilled } from "@tabler/icons-react";
 
 const Footer = () => (
-  <Box bg='slate.0'>
+  <Box>
     <Container size={1280} py={40}>
       <Grid columns={24} align="center" justify="space-between">
         <Col span={8}>
           <Group spacing={8}>
-            <Image alt='' src={logo} height={30} />
+            <Image alt='' src={logo} height={55} />
             <Title order={5} c='primary.7'>WARDIERE INC.</Title>
           </Group>
           <Text c='dimmed' mt={8}>
