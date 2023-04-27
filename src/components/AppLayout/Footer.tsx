@@ -1,7 +1,21 @@
-import Image from "next/image";
-import { ActionIcon, Box, Col, Container, Grid, Group, Stack, Text, Title } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Col,
+  Container,
+  Grid,
+  Group,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
+import {
+  IconMailFilled,
+  IconMapPinFilled,
+  IconPhoneFilled,
+} from '@tabler/icons-react';
+import Image from 'next/image';
 import logo from '@/assets/logo.png';
-import { IconMailFilled, IconMapPinFilled, IconPhoneFilled } from "@tabler/icons-react";
 
 const Footer = () => (
   <Box>
@@ -9,11 +23,14 @@ const Footer = () => (
       <Grid columns={24} align="center" justify="space-between">
         <Col span={8}>
           <Group spacing={8}>
-            <Image alt='' src={logo} height={55} />
-            <Title order={5} c='primary.7'>WARDIERE INC.</Title>
+            <Image alt="" src={logo} height={55} />
+            <Title order={5} c="primary.7">
+              WARDIERE INC.
+            </Title>
           </Group>
-          <Text c='dimmed' mt={8}>
-            Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
+          <Text c="dimmed" mt={8}>
+            Lorem ipsum is placeholder text commonly used in the graphic, print,
+            and publishing industries for previewing layouts and visual mockups.
           </Text>
         </Col>
         <Col span={8}>

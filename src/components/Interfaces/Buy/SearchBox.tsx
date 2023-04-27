@@ -1,14 +1,14 @@
 import {
   Button,
-  Card, 
-  Col, 
+  Card,
+  Col,
   Grid,
-  Group, 
-  Select, 
-  Stack, 
-  Text, 
+  Group,
+  Select,
+  Stack,
+  Text,
   TextInput,
-} from "@mantine/core";
+} from '@mantine/core';
 
 const SearchBox = () => (
   <Card
@@ -21,7 +21,9 @@ const SearchBox = () => (
     withBorder
     sx={{ position: 'initial' }}
   >
-    <Text fw={600} fz={24}>Search the type what you looking for.</Text>
+    <Text fw={600} fz={24}>
+      Search the type what you looking for.
+    </Text>
     <Grid columns={24} justify="space-around" mt={8}>
       <Col md={4}>
         <Text fw={600}>Location</Text>
@@ -39,19 +41,37 @@ const SearchBox = () => (
           <div>
             <Text weight={600}>Price range</Text>
             <Group>
-              <TextInput variant="filled" size="md" radius={8} placeholder="from" />
-              <TextInput variant="filled" size="md" radius={8} placeholder="to" />
+              <TextInput
+                variant="filled"
+                size="md"
+                radius={8}
+                placeholder="from"
+              />
+              <TextInput
+                variant="filled"
+                size="md"
+                radius={8}
+                placeholder="to"
+              />
             </Group>
           </div>
         </Group>
       </Col>
       <Col md={4}>
         <Text fw={600}>Property type</Text>
-        <Select placeholder="Select property type" variant="filled" size="md" radius={8} data={['Villa', 'Apartment', 'Condo']} />
+        <Select
+          placeholder="Select property type"
+          variant="filled"
+          size="md"
+          radius={8}
+          data={['Villa', 'Apartment', 'Condo']}
+        />
       </Col>
       <Col md={4}>
-        <Stack justify="flex-end"  h={65}>
-        <Button px={40} size="md" radius={8}>Search</Button>
+        <Stack justify="flex-end" h={65}>
+          <Button px={40} size="md" radius={8}>
+            Search
+          </Button>
         </Stack>
       </Col>
     </Grid>

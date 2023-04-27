@@ -1,25 +1,37 @@
-import { Button, Col, Container, Grid, Group, MultiSelect, Select, SimpleGrid, Stack, TextInput, Textarea, Title } from "@mantine/core";
-import { IconCurrencyDollar } from "@tabler/icons-react";
+import {
+  Button,
+  Col,
+  Container,
+  Grid,
+  Group,
+  MultiSelect,
+  Select,
+  SimpleGrid,
+  TextInput,
+  Textarea,
+  Title,
+} from '@mantine/core';
+import { IconCurrencyDollar } from '@tabler/icons-react';
 
 const Listing = () => {
-  let _;
-
   return (
     <Container size={1280} my={40}>
       <Grid columns={24} gutterMd={40}>
         <Col md={14}>
-          <Title order={4} mb={8}>General Info</Title>
+          <Title order={4} mb={8}>
+            General Info
+          </Title>
           <SimpleGrid cols={2}>
             <Select
-              label='Property for'
+              label="Property for"
               placeholder="Please select option"
               data={['Sale', 'Rent', 'Both']}
               size="md"
               radius={8}
               variant="filled"
             />
-            <TextInput 
-              label='Price'
+            <TextInput
+              label="Price"
               placeholder="Enter price"
               icon={<IconCurrencyDollar size={16} stroke={1.5} />}
               size="md"
@@ -28,63 +40,67 @@ const Listing = () => {
             />
           </SimpleGrid>
 
-          <Title order={4} mt={24} mb={8}>Property Detail</Title>
+          <Title order={4} mt={24} mb={8}>
+            Property Detail
+          </Title>
           <SimpleGrid cols={2}>
-            <TextInput 
-              label='Title'
+            <TextInput
+              label="Title"
               placeholder="Enter title"
               size="md"
               radius={8}
               variant="filled"
             />
-            <Textarea 
-              label='Description'
+            <Textarea
+              label="Description"
               placeholder="Enter description"
               size="md"
               radius={8}
               variant="filled"
             />
             <TextInput
-              label='Bedroom'
+              label="Bedroom"
               placeholder="Enter bedroom quantity"
               size="md"
               radius={8}
               variant="filled"
             />
             <TextInput
-              label='Bathroom'
-              placeholder='Enter bathroom quantity'
+              label="Bathroom"
+              placeholder="Enter bathroom quantity"
               size="md"
               radius={8}
               variant="filled"
             />
             <TextInput
-              label='Parking'
+              label="Parking"
               placeholder="Enter parking quantity"
               size="md"
               radius={8}
               variant="filled"
             />
             <TextInput
-              label='Land Area'
-              placeholder='Enter land area'
+              label="Land Area"
+              placeholder="Enter land area"
               size="md"
               radius={8}
               variant="filled"
             />
             <TextInput
-              label='Floor Area'
-              placeholder='Enter floor area'
+              label="Floor Area"
+              placeholder="Enter floor area"
               size="md"
               radius={8}
               variant="filled"
             />
           </SimpleGrid>
 
-          <Title order={4} mt={24} mb={8}>Location</Title>
+          <Title order={4} mt={24} mb={8}>
+            Location
+          </Title>
           <SimpleGrid cols={2}>
             <Select
-              label='City/Province'
+              label="City/Province"
               placeholder="Select city/province"
               data={['Phnom Penh', 'Sihanouk ville']}
               size="md"
@@ -92,28 +108,28 @@ const Listing = () => {
               variant="filled"
             />
             <TextInput
-              label='Khan/District'
+              label="Khan/District"
               placeholder="Enter khan/district"
               size="md"
               radius={8}
               variant="filled"
             />
             <TextInput
-              label='Sangkat/Commune'
+              label="Sangkat/Commune"
               placeholder="Enter sangkat/commune"
               size="md"
               radius={8}
               variant="filled"
             />
             <TextInput
-              label='Street name'
+              label="Street name"
               placeholder="Enter street name"
               size="md"
               radius={8}
               variant="filled"
             />
             <TextInput
-              label='Street Number'
+              label="Street Number"
               placeholder="Enter street number"
               size="md"
               radius={8}
@@ -121,10 +137,12 @@ const Listing = () => {
             />
           </SimpleGrid>
 
-          <Title order={4} mt={24} mb={8}>Feature</Title>
+          <Title order={4} mt={24} mb={8}>
+            Feature
+          </Title>
           <SimpleGrid cols={2}>
             <MultiSelect
-              label='Amenities'
+              label="Amenities"
               placeholder="Please select amenities"
               data={[]}
               size="md"
@@ -132,7 +150,7 @@ const Listing = () => {
               variant="filled"
             />
             <MultiSelect
-              label='Property feature'
+              label="Property feature"
               placeholder="Please select property feature"
               data={[]}
               size="md"
@@ -140,7 +158,7 @@ const Listing = () => {
               variant="filled"
             />
             <MultiSelect
-              label='Security'
+              label="Security"
               placeholder="Please select security"
               data={[]}
               size="md"
@@ -148,7 +166,7 @@ const Listing = () => {
               variant="filled"
             />
             <MultiSelect
-              label='Views'
+              label="Views"
               placeholder="Please select views"
               data={[]}
               size="md"
@@ -157,14 +175,22 @@ const Listing = () => {
             />
           </SimpleGrid>
 
-          <Title order={4} mt={24} mb={8}>Image</Title>
-          <Title order={4} mt={24} mb={8}>Video & VR</Title>
+          <Title order={4} mt={24} mb={8}>
+            Image
+          </Title>
+          <Title order={4} mt={24} mb={8}>
+            Video & VR
+          </Title>
           <Group position="right">
-            <Button radius={8} px={32}>List Property</Button>
+            <Button radius={8} px={32}>
+              List Property
+            </Button>
           </Group>
         </Col>
         <Col md={10}>
-          <Title order={4} mt={24} mb={8}>Listing preview</Title>
+          <Title order={4} mt={24} mb={8}>
+            Listing preview
+          </Title>
         </Col>
       </Grid>
     </Container>

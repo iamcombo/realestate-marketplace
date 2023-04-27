@@ -84,16 +84,18 @@
     "@typescript-eslint/no-shadow": [
       "error"
     ],
-    "prefer-arrow-functions/prefer-arrow-functions": [
-      "warn",
-      {
-        "classPropertiesAllowed": false,
-        "disallowPrototype": false,
-        "returnStyle": "unchanged",
-        "singleReturnOnly": false
-      }
-    ],
-    "react/prop-types": "off"
+    "arrow-body-style": "off",
+    // "prefer-arrow-functions/prefer-arrow-functions": [
+    //   "warn",
+    //   {
+    //     "classPropertiesAllowed": false,
+    //     "disallowPrototype": false,
+    //     "returnStyle": "unchanged",
+    //     "singleReturnOnly": false
+    //   }
+    // ],
+    "react/prop-types": "off",
+    "max-len": ["warn",  100, { "ignoreComments": true, "ignoreUrls": true }]
   },
   "settings": {
     "import/resolver": {
