@@ -57,7 +57,7 @@ const CardItem = ({
       <Text fw={700} mt="xs" truncate>{title}</Text>
       <Flex mb={8}>
         <IconMapPinFilled size={14} />
-        <Text c='dimmed' ml={4} fz={10}>{useIsClient() && generateAddress()}</Text>
+        <Text truncate c='dimmed' ml={4} fz={10}>{useIsClient() && generateAddress()}</Text>
       </Flex>
 
       <Group mt="lg" position='apart'>

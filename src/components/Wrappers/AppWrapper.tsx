@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { MantineProvider } from "@mantine/core";
 import { Poppins } from "next/font/google";
+import Rainbow from "./Rainbow";
 
 const poppins: unknown = Poppins({
   subsets: ['latin'],
@@ -34,7 +35,9 @@ const AppWrapper = ({ children }: { children: ReactNode }) => (
       fontFamily: poppins as CSSProperties['fontFamily'],
     }}
   >
-    {children}
+    <Rainbow>
+      {children}
+    </Rainbow>
   </MantineProvider>
 );
 

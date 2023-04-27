@@ -30,7 +30,7 @@ const CardFeature = () => {
   return (
     <Card shadow="sm" radius={16}>
       <Grid columns={24}>
-        <Col span={10}>
+        <Col md={10}>
           <Carousel
             withIndicators
             withControls={false}
@@ -65,7 +65,7 @@ const CardFeature = () => {
             </Carousel.Slide>
           </Carousel>
         </Col>
-        <Col span={14}>
+        <Col md={14}>
           <Group position="apart" mb={16}>
             <Group spacing={4}>
               <Badge leftSection={<IconAffiliate size={10} />}>4 Network</Badge>

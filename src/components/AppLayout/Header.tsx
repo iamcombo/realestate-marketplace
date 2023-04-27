@@ -13,7 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { IconBell } from "@tabler/icons-react";
 import logo from '@/assets/logo.png';
-import { useRouter } from "next/router";
+import { useRouter } from "next/router"; 
 
 const HeaderComponent = () => {
   const { asPath } = useRouter();
@@ -30,7 +30,9 @@ const HeaderComponent = () => {
             <Link href='/'>
               <Group spacing={4}>
                 <Image alt='' src={logo} height={55} />
-                <Title order={4}>RealEstate INC.</Title>
+                <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
+                  <Title order={4}>RealEstate INC.</Title>
+                </MediaQuery>
               </Group>
             </Link>
           </Col>
