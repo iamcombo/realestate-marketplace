@@ -38,16 +38,16 @@ const HeaderComponent = () => {
             <Col md={8}>
               <Group position="center" spacing={24}>
                 <Link href='/buy'>
-                  <Text weight={isPath('/buy') ? 800 : 500}>Buy</Text>
+                  <Text fz={16} fw={isPath('/buy') ? 800 : 500}>Buy</Text>
                 </Link>
                 <Link href='/listing/selectType'>
-                  <Text weight={isPath('/listing') ? 600 : 500}>Sell</Text>
+                  <Text fz={16} fw={isPath('/listing') ? 600 : 500}>Sell</Text>
                 </Link>
                 <Link href='/'>
-                  <Text weight={isPath('/rent') ? 600 : 500}>Rent</Text>
+                  <Text fz={16} fw={isPath('/rent') ? 600 : 500}>Rent</Text>
                 </Link>
                 <Link href='/'>
-                  <Text weight={isPath('/about') ? 600 : 500}>About</Text>
+                  <Text fz={16} fw={isPath('/about') ? 600 : 500}>About</Text>
                 </Link>
               </Group>
             </Col>

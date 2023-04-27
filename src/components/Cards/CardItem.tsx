@@ -2,22 +2,20 @@ import {
   createStyles,
   Card,
   Image,
-  ActionIcon,
   Group,
   Text,
   Avatar,
-  Badge,
   rem,
+  ThemeIcon,
+  Flex,
 } from '@mantine/core';
-import { IconHeart, IconBookmark, IconShare, IconBoxModel2, IconBed, IconBath } from '@tabler/icons-react';
+import { useIsClient } from '@/hooks';
+import { generateAddress } from '@/utils';
+import { IconBoxModel2, IconBed, IconBath, IconMapPinFilled } from '@tabler/icons-react';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-  },
-
-  title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    // backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
   },
 
   footer: {
@@ -41,7 +39,7 @@ interface ArticleCardFooterProps {
   };
 }
 
-export const CardItem = ({
+const CardItem = ({
   image,
   category,
   title,
@@ -51,14 +49,16 @@ export const CardItem = ({
   const { classes, theme } = useStyles();
 
   return (
-    <Card withBorder padding="lg" radius="md" shadow='sm' className={classes.card}>
+    <Card withBorder padding="lg" radius={16} shadow='sm' className={classes.card}>
       <Card.Section mb="sm">
         <Image src={image} alt={title} height={180} />
       </Card.Section>
 
-      <Text fw={700} className={classes.title} mt="xs" truncate>
-        {title}
-      </Text>
+      <Text fw={700} mt="xs" truncate>{title}</Text>
+      <Flex mb={8}>
+        <IconMapPinFilled size={14} />
+        <Text c='dimmed' ml={4} fz={10}>{useIsClient() && generateAddress()}</Text>
+      </Flex>
 
       <Group mt="lg" position='apart'>
         <Group spacing={8}>
@@ -70,7 +70,7 @@ export const CardItem = ({
             </Text>
           </div>
         </Group>
-        <Text fw={600}>$2,500,000 USD</Text>
+        <Text fw={600} color={theme.primaryColor}>$2,500,000 USD</Text>
       </Group>
 
       <Card.Section className={classes.footer}>
@@ -92,28 +92,28 @@ export const CardItem = ({
         </Group> */}
         <Group position='apart'>
           <div>
-            <Group spacing={0}>
-              <ActionIcon>
+            <Group spacing={4}>
+              <ThemeIcon variant='light'>
                 <IconBoxModel2 color={theme.primaryColor} size="1.2rem" stroke={1.5} />
-              </ActionIcon>
+              </ThemeIcon>
               <Text fz={10} fw={500}>678 m²</Text>
             </Group>
             <Text fz={10} fw={600} c='dimmed'>Living room</Text>
           </div>
           <div>
-            <Group spacing={0}>
-              <ActionIcon>
+            <Group spacing={4}>
+              <ThemeIcon variant='light'>
                 <IconBed color={theme.primaryColor} size="1.2rem" stroke={1.5} />
-              </ActionIcon>
+              </ThemeIcon>
               <Text fz={10} fw={500}>3 room</Text>
             </Group>
             <Text fz={10} fw={600} c='dimmed'>Bed room</Text>
           </div>
           <div>
-            <Group spacing={0}>
-              <ActionIcon>
+            <Group spacing={4}>
+              <ThemeIcon variant='light'>
                 <IconBath color={theme.primaryColor} size="1.2rem" stroke={1.5} />
-              </ActionIcon>
+              </ThemeIcon>
               <Text fz={10} fw={500}>2 room</Text>
             </Group>
             <Text fz={10} fw={600} c='dimmed'>Bath room</Text>
@@ -123,3 +123,5 @@ export const CardItem = ({
     </Card>
   );
 };
+
+export default CardItem;

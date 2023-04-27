@@ -1,8 +1,8 @@
-import { Card, Col, Grid, Group, Image, Paper, Space, Stack, Text, ThemeIcon, Title } from "@mantine/core";
+import { Card, Col, Grid, Group, Image, Space, Stack, Text, ThemeIcon, Title } from "@mantine/core";
 import { IconAngle, IconBuildingEstate, IconClipboardList } from "@tabler/icons-react";
 
 const Reason = () => (
-  <div>
+  <>
     <Space h={80} />
     <Title my={16}>Why you should buy <br/> property from us?</Title>
     <Grid columns={24} gutter={40} align='center' justify="space-between">
@@ -62,7 +62,7 @@ const Reason = () => (
         </div>
       </Col>
     </Grid>
-  </div>
+  </>
 );
 
 export default Reason;

@@ -8,7 +8,7 @@ const ImageDisplay = () => {
   const [opened, setOpened] = useState(false);
 
   return (
-    <div>
+    <>
       <Grid columns={24} mb={16} gutterMd={40}>
         <Col span={18}>
           <Paper sx={{ position: 'relative' }} withBorder>
@@ -59,7 +59,7 @@ const ImageDisplay = () => {
           </Tabs>
         </Container>
       </Drawer>
-    </div>
+    </>
   );
 };
 

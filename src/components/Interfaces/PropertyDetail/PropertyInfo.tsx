@@ -20,7 +20,7 @@ import { Avatar, Button, Card, Col, Grid, Group, Space, Spoiler, Text, Title } f
 import { useIsClient } from '@/hooks';
 
 const PropertyInfo = () => (
-  <div>
+  <>
     <Grid columns={24}>
       <Col md={8}>
         <Text weight={600}>Description</Text>
@@ -31,7 +31,7 @@ const PropertyInfo = () => (
         </Spoiler>
       </Col>
     </Grid>
-    <Card withBorder radius={8} mt={8}>
+    <Card withBorder radius={16} mt={8}>
       <Text weight={500} color="dimmed">Listed by property owner</Text>
       <Group mt={8} position='apart'>
         <Group>
@@ -179,7 +179,7 @@ const PropertyInfo = () => (
         </Group>
       </Col>
     </Grid>
-  </div>
+  </>
 );
 
 export default PropertyInfo;
