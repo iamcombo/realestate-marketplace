@@ -68,6 +68,7 @@ const ImageDisplay = () => {
         overlayProps={{ opacity: 0.5, blur: 4 }}
         position="bottom"
         size="100%"
+        transitionProps={{ transition: 'slide-up', duration: 250, timingFunction: 'linear' }}
       >
         <Container size={1280}>
           <Tabs defaultValue="gallery">
