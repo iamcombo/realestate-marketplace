@@ -5,7 +5,9 @@ import {
   Drawer,
   Grid,
   Image,
+  MediaQuery,
   Paper,
+  SimpleGrid,
   Stack,
   Tabs,
 } from '@mantine/core';
@@ -24,7 +26,7 @@ const ImageDisplay = () => {
   return (
     <>
       <Grid columns={24} mb={16} gutterMd={40}>
-        <Col span={18}>
+        <Col span={24} sm={18} md={18}>
           <Paper sx={{ position: 'relative' }} withBorder>
             <Image
               height={400}
@@ -45,21 +47,40 @@ const ImageDisplay = () => {
             </Button>
           </Paper>
         </Col>
-        <Col span={6}>
-          <Stack>
-            <Image
-              radius="sm"
-              alt=""
-              src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
-            />
-            <Image
-              radius="sm"
-              alt=""
-              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            />
-            {/* <Image radius='sm' alt='' src='https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' /> */}
-          </Stack>
-        </Col>
+        <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
+          <Col span={6} md={6}>
+            <Stack>
+              <Image
+                radius="sm"
+                alt=""
+                src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+              />
+              <Image
+                radius="sm"
+                alt=""
+                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              />
+            </Stack>
+          </Col>
+        </MediaQuery>
+        <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
+          <Col span={24}>
+            <SimpleGrid cols={2}>
+              <Image
+                radius="sm"
+                alt=""
+                src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                height={80}
+              />
+              <Image
+                radius="sm"
+                alt=""
+                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                height={80}
+              />
+            </SimpleGrid>
+          </Col>
+        </MediaQuery>
       </Grid>
       <Drawer
         opened={opened}
