@@ -13,7 +13,6 @@ const SelectType = () => (
       <Col md={6}>
         <Link href='/listing'>
           <Card
-            w={220}
             p={24}
             radius={16}
             shadow="md"
@@ -29,7 +28,6 @@ const SelectType = () => (
       <Col md={6}>
         <Link href='/listing'>
           <Card
-            w={220}
             p={24}
             radius={16}
             shadow="md"
@@ -45,7 +43,6 @@ const SelectType = () => (
       <Col md={6}>
         <Link href='/listing'>
           <Card
-            w={220}
             p={24}
             radius={16}
             shadow="md"

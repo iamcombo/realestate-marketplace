@@ -3,8 +3,10 @@ import {
   Box,
   Col,
   Container,
+  Flex,
   Grid,
   Group,
+  MediaQuery,
   Stack,
   Text,
   Title,
@@ -21,7 +23,7 @@ const Footer = () => (
   <Box>
     <Container size={1280} py={40}>
       <Grid columns={24} align="center" justify="space-between">
-        <Col span={8}>
+        <Col md={8}>
           <Group spacing={8}>
             <Image alt="" src={logo} height={55} />
             <Title order={5} c="primary.7">
@@ -33,27 +35,29 @@ const Footer = () => (
             and publishing industries for previewing layouts and visual mockups.
           </Text>
         </Col>
-        <Col span={8}>
+        <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
+          <Col md={8}>
+            <Group position="center">
+              <Stack spacing={8}>
+                <Text weight={500}>Listing</Text>
+                <Text weight={500}>About us</Text>
+                <Text weight={500}>Contact us</Text>
+                <Text weight={500}>Our Team</Text>
+              </Stack>
+            </Group>
+          </Col>
+        </MediaQuery>
+        <Col md={8}>
           <Group position="center">
             <Stack spacing={8}>
-              <Text weight={500}>Listing</Text>
-              <Text weight={500}>About us</Text>
-              <Text weight={500}>Contact us</Text>
-              <Text weight={500}>Our Team</Text>
-            </Stack>
-          </Group>
-        </Col>
-        <Col span={8}>
-          <Group position="center">
-            <Stack spacing={8}>
-              <Group spacing={4}>
+              <Flex>
                 <ActionIcon>
                   <IconMapPinFilled />
                 </ActionIcon>
-                <Text weight={500}>
+                <Text weight={500} ml={4}>
                   123 Anywhere Street, Any City, 12345 ST, Cambodia
                 </Text>
-              </Group>
+              </Flex>
               <Group spacing={4}>
                 <ActionIcon>
                   <IconPhoneFilled />

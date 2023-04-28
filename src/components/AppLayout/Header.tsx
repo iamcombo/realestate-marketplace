@@ -1,5 +1,6 @@
 import { 
   Avatar,
+  Burger,
   Col,
   Container,
   Grid,
@@ -14,10 +15,14 @@ import Image from "next/image";
 import { IconBell } from "@tabler/icons-react";
 import logo from '@/assets/logo.png';
 import { useRouter } from "next/router"; 
+import { useDisclosure } from "@mantine/hooks";
+import Navbar from "./Navbar";
 
 const HeaderComponent = () => {
   const { asPath } = useRouter();
+  const [opened, { toggle }] = useDisclosure(false);
   const isPath = (path: string) => path === asPath;
+  const label = opened ? 'Close navigation' : 'Open navigation';
 
   return (
     <Header
@@ -37,7 +42,7 @@ const HeaderComponent = () => {
             </Link>
           </Col>
           <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
-            <Col md={8}>
+            <Col span={12} md={8}>
               <Group position="center" spacing={24}>
                 <Link href='/buy'>
                   <Text fz={16} fw={isPath('/buy') ? 800 : 500}>Buy</Text>
@@ -54,7 +59,7 @@ const HeaderComponent = () => {
               </Group>
             </Col>
           </MediaQuery>
-          <Col span={12} md={8}>
+          <Col span={12} sm={4} md={8}>
             <Group position="right">
               <IconBell stroke={1.5} />
               <Link href='/profile'>
@@ -62,8 +67,17 @@ const HeaderComponent = () => {
               </Link>
             </Group>
           </Col>
+          <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
+            <Col span={4}>
+              <Burger opened={opened} onClick={toggle} aria-label={label} size={20} />
+            </Col>
+          </MediaQuery>
         </Grid>
       </Container>
+      <Navbar
+        opened={opened}
+        toggle={toggle}
+      />
     </Header>
   );
 };

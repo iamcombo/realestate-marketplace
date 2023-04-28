@@ -716,6 +716,13 @@
     "@mantine/ssr" "6.0.8"
     "@mantine/styles" "6.0.8"
 
+"@mantine/nprogress@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@mantine/nprogress/-/nprogress-6.0.9.tgz#f327d2a9471de8a3e52e119dc7847066d07cf781"
+  integrity sha512-I9CEZEEy3rXRxh1VJCYJ6aiFwY6H3KbK07P6JcrG/1zQgWpnX+2BStddYZ1lwI23x8pmUwHTXWHegJAYi/Traw==
+  dependencies:
+    "@mantine/utils" "6.0.9"
+
 "@mantine/ssr@6.0.8":
   version "6.0.8"
   resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-6.0.8.tgz#bd32e603ba97f1e1496cdcc6dc370582edbab113"

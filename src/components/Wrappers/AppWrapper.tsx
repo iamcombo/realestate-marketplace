@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { MantineProvider } from "@mantine/core";
 import { Poppins } from "next/font/google";
 import Rainbow from "./Rainbow";
+import PageRouteProgress from "../PageRoute/PageRouteProgress";
 
 const poppins: unknown = Poppins({
   subsets: ['latin'],
@@ -37,6 +38,7 @@ const AppWrapper = ({ children }: { children: ReactNode }) => {
       }}
     >
       <Rainbow>
+        <PageRouteProgress />
         {children}
       </Rainbow>
     </MantineProvider>

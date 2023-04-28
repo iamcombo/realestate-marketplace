@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import Footer from './Footer';
 import HeaderComponent from './Header';
-import PageRouteTransition from '../PageRouteTransition';
+import PageRouteTransition from '../PageRoute/PageRouteTransition';
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const { pathname } = useRouter();

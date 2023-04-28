@@ -21,7 +21,12 @@ const Listing = () => {
           <Title order={4} mb={8}>
             General Info
           </Title>
-          <SimpleGrid cols={2}>
+          <SimpleGrid
+            cols={2}       
+            breakpoints={[
+              { maxWidth: 'xs', cols: 1 },
+            ]}
+          >
             <Select
               label="Property for"
               placeholder="Please select option"
@@ -43,7 +48,12 @@ const Listing = () => {
           <Title order={4} mt={24} mb={8}>
             Property Detail
           </Title>
-          <SimpleGrid cols={2}>
+          <SimpleGrid
+            cols={2}       
+            breakpoints={[
+              { maxWidth: 'xs', cols: 1 },
+            ]}
+          >
             <TextInput
               label="Title"
               placeholder="Enter title"
@@ -98,7 +108,12 @@ const Listing = () => {
           <Title order={4} mt={24} mb={8}>
             Location
           </Title>
-          <SimpleGrid cols={2}>
+          <SimpleGrid
+            cols={2}       
+            breakpoints={[
+              { maxWidth: 'xs', cols: 1 },
+            ]}
+          >
             <Select
               label="City/Province"
               placeholder="Select city/province"
@@ -140,7 +155,12 @@ const Listing = () => {
           <Title order={4} mt={24} mb={8}>
             Feature
           </Title>
-          <SimpleGrid cols={2}>
+          <SimpleGrid
+            cols={2}       
+            breakpoints={[
+              { maxWidth: 'xs', cols: 1 },
+            ]}
+          >
             <MultiSelect
               label="Amenities"
               placeholder="Please select amenities"
