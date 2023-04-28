@@ -19,7 +19,6 @@ const Navbar = ({
       opened={opened}
       onClose={toggle}
       transitionProps={{ transition: 'slide-right', duration: 250 }}
-      // withCloseButton={false}
     >
       {/* drawer content */}
       <Container>
@@ -30,7 +29,7 @@ const Navbar = ({
           </Group>
         </Link>
         <Space h={24} />
-        <Stack>
+        <Stack onClick={toggle}>
           <Link href='/buy'>
             <Text fz={20} fw={isPath('/buy') ? 600 : 500}>Buy</Text>
           </Link>
