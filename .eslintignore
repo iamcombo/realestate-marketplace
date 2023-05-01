@@ -11,5 +11,7 @@
 *.txt
 *.html
 *.webmanifest
+*.glb
+next.config.js
 LICENSE
 build

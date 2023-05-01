@@ -1,5 +1,6 @@
 import {
   Button,
+  Card,
   Col,
   Container,
   Drawer,
@@ -17,11 +18,34 @@ import {
   IconPhoto,
   IconSquareRotatedForbid,
 } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import CarouselWithThumnail from '@/components/CarouselWithThumnail';
+import { useIsClient } from '@/hooks';
+import floorModel from '../../../../public/scene.glb';
 
 const ImageDisplay = () => {
   const [opened, setOpened] = useState(false);
+  const loader = new GLTFLoader();
+  loader.load(floorModel, (d) => {
+    const entity = document.getElementById('floor');
+    if(!entity) return;
+    entity.object3D.add(d.scene);
+  });
+  
+  useEffect(() => {
+    function initTour() {
+      import("aframe");
+      // Set up the 360-degree panorama image
+      const panoImg = document.getElementById('pano');
+      if (!panoImg) return;
+      panoImg.onload = () => {
+        const sky = document.querySelector('a-sky');
+        sky.setAttribute('src', '#pano');
+      };
+    }
+    initTour();
+  }, []);
 
   return (
     <>
@@ -94,19 +118,19 @@ const ImageDisplay = () => {
         <Container size={1280}>
           <Tabs defaultValue="gallery">
             <Tabs.List>
-              <Tabs.Tab value="gallery" icon={<IconPhoto size="0.8rem" />}>
+              <Tabs.Tab value="gallery" icon={<IconPhoto size="0.8rem" stroke={1.5} />}>
                 Gallery
               </Tabs.Tab>
-              <Tabs.Tab value="360" icon={<Icon360View size="0.8rem" />}>
+              <Tabs.Tab value="360" icon={<Icon360View size="0.8rem" stroke={1.5} />}>
                 360
               </Tabs.Tab>
               <Tabs.Tab
                 value="floor"
-                icon={<IconSquareRotatedForbid size="0.8rem" />}
+                icon={<IconSquareRotatedForbid size="0.8rem" stroke={1.5} />}
               >
                 Floor
               </Tabs.Tab>
-              <Tabs.Tab value="video" icon={<IconBadgeHd />}>
+              <Tabs.Tab value="video" icon={<IconBadgeHd size="0.8rem" stroke={1.5} />}>
                 Video
               </Tabs.Tab>
             </Tabs.List>
@@ -116,11 +140,35 @@ const ImageDisplay = () => {
             </Tabs.Panel>
 
             <Tabs.Panel value="360" pt="xs">
-              360 tab content
+              <Card radius={16} p={0}>
+                {useIsClient() && (
+                  <div style={{ width: '100%', height: '600px' }}>
+                    <a-scene embedded>
+                      <a-assets timeout="10000">
+                        <img crossOrigin="anonymous" alt='' id="pano" src='../pano.jpg' />
+                      </a-assets>
+
+                      <a-sky src="#pano" /> 
+
+                      <a-entity position="0 1.8 0">
+                        <a-camera wasd-controls="acceleration: 1000; fly: true;" />
+                      </a-entity>
+                    </a-scene>
+                  </div>
+                )}
+              </Card>
             </Tabs.Panel>
 
             <Tabs.Panel value="floor" pt="xs">
-              Floor tab content
+              <Card radius={16} p={0}>
+                {useIsClient() && (
+                  <div style={{ width: '100%', height: '600px' }}>
+                    <a-scene embedded>
+                      <a-entity id="floor" position="0 1.8 0" />
+                    </a-scene>
+                  </div>
+                )}
+              </Card>
             </Tabs.Panel>
 
             <Tabs.Panel value="video" pt="xs">
