@@ -163,19 +163,25 @@ const ImageDisplay = () => {
             </Tabs.Panel>
 
             <Tabs.Panel value="floor" pt="xs">
-              <Card withBorder radius={16}>
+              <Card withBorder radius={16} bg="slate.2">
                 {/* <a-scene> */}
                   <Suspense fallback={<span>loading...</span>}>
                     <Canvas 
                       style={{ height: '70vh' }}
                       frameloop="demand"
+                      shadows
+                      camera={{ position: [0, 0, 10] }} 
                     >
-                      <OrbitControls />
+                      <OrbitControls
+                        makeDefault 
+                        minPolarAngle={Math.PI / 2} 
+                        maxPolarAngle={Math.PI / 2} 
+                      />
                       <ambientLight intensity={0.5} />
                       <pointLight position={[20, 30, 10]} intensity={1} />
                       <pointLight position={[-10, -10, -10]} color='blue' />
-                      <PerspectiveCamera makeDefault fov={40} position={[-140, 0, 200]} />
-                      <ThreeDModel scale={0} position={[0, 0, 0]} rotation={[0, 0, 0]} />
+                      <PerspectiveCamera makeDefault position={[0, 0, 200]} />
+                      <ThreeDModel />
                     </Canvas>
                   </Suspense>
                 {/* </a-scene> */}
@@ -184,8 +190,8 @@ const ImageDisplay = () => {
 
             <Tabs.Panel value="video" pt="xs">
               <iframe
-                width="560" 
-                height="315" 
+                width="100%" 
+                height="400" 
                 src="https://www.youtube.com/embed/YVT7fN6hFcY" 
                 title="YouTube video player" 
                 allow="
