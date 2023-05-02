@@ -95,6 +95,7 @@
     //   }
     // ],
     "react/prop-types": "off",
+    "import/no-extraneous-dependencies": "off",
     "max-len": ["warn",  100, { "ignoreComments": true, "ignoreUrls": true }]
   },
   "settings": {

@@ -1,3 +1,5 @@
+'use client';
+
 import { PropertyInfo } from '@/components';
 import ImageDisplay from '@/components/Interfaces/PropertyDetail/ImageDisplay';
 import { faker } from '@faker-js/faker';

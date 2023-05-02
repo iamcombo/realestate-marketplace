@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import {
   Button,
   Card,
@@ -6,6 +7,7 @@ import {
   Drawer,
   Grid,
   Image,
+  LoadingOverlay,
   MediaQuery,
   Paper,
   SimpleGrid,
@@ -18,20 +20,18 @@ import {
   IconPhoto,
   IconSquareRotatedForbid,
 } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import CarouselWithThumnail from '@/components/CarouselWithThumnail';
+import { Suspense, useEffect, useState } from 'react';
 import { useIsClient } from '@/hooks';
-import floorModel from '../../../../public/scene.glb';
+import CarouselWithThumnail from '@/components/CarouselWithThumnail';
+// import ThreeDModel from './3dModel';
+import dynamic from 'next/dynamic';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+
+const ThreeDModel = dynamic(() => import('./3dModel'), { ssr: false });
 
 const ImageDisplay = () => {
   const [opened, setOpened] = useState(false);
-  const loader = new GLTFLoader();
-  loader.load(floorModel, (d) => {
-    const entity = document.getElementById('floor');
-    if(!entity) return;
-    entity.object3D.add(d.scene);
-  });
   
   useEffect(() => {
     function initTour() {
@@ -128,7 +128,7 @@ const ImageDisplay = () => {
                 value="floor"
                 icon={<IconSquareRotatedForbid size="0.8rem" stroke={1.5} />}
               >
-                Floor
+                3D
               </Tabs.Tab>
               <Tabs.Tab value="video" icon={<IconBadgeHd size="0.8rem" stroke={1.5} />}>
                 Video
@@ -160,14 +160,26 @@ const ImageDisplay = () => {
             </Tabs.Panel>
 
             <Tabs.Panel value="floor" pt="xs">
-              <Card radius={16} p={0}>
-                {useIsClient() && (
+              <Card withBorder radius={16} p={0}>
+                <Canvas 
+                  style={{ height: '70vh' }}
+                >
+                  <Suspense fallback={null}>
+                    <OrbitControls />
+                    <ambientLight intensity={0.5} />
+                    <pointLight position={[20, 30, 10]} intensity={1} />
+                    <pointLight position={[-10, -10, -10]} color='blue' />
+                    <PerspectiveCamera makeDefault fov={40} position={[-140, 0, 200]} />
+                    <ThreeDModel scale={0} position={[0, 0, 0]} rotation={[0, 0, 0]} />
+                  </Suspense>
+                </Canvas>
+                {/* {useIsClient() && (
                   <div style={{ width: '100%', height: '600px' }}>
                     <a-scene embedded>
                       <a-entity id="floor" position="0 1.8 0" />
                     </a-scene>
                   </div>
-                )}
+                )} */}
               </Card>
             </Tabs.Panel>
 
