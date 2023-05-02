@@ -191,7 +191,7 @@ const ImageDisplay = () => {
             <Tabs.Panel value="video" pt="xs">
               <iframe
                 width="100%" 
-                height="400" 
+                height="720px" 
                 src="https://www.youtube.com/embed/YVT7fN6hFcY" 
                 title="YouTube video player" 
                 allow="
