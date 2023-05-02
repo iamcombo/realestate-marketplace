@@ -19,31 +19,38 @@ import {
   IconPhoto,
   IconSquareRotatedForbid,
 } from '@tabler/icons-react';
-import { Suspense, useEffect, useState } from 'react';
-import { useIsClient } from '@/hooks';
-import CarouselWithThumnail from '@/components/CarouselWithThumnail';
 import dynamic from 'next/dynamic';
 import { Canvas } from '@react-three/fiber';
+import { Suspense, useEffect, useState } from 'react';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import CarouselWithThumnail from '@/components/CarouselWithThumnail';
 
 const ThreeDModel = dynamic(() => import('./3dModel'), { ssr: false });
 
 const ImageDisplay = () => {
   const [opened, setOpened] = useState(false);
+  const [tab, setTab] = useState<string | null>('');
   
   useEffect(() => {
     function initTour() {
-      import("aframe");
+      import("aframe");   
       // Set up the 360-degree panorama image
-      const panoImg = document.getElementById('pano');
+      const panoImg = document.querySelector('#pano');
       if (!panoImg) return;
       panoImg.onload = () => {
         const sky = document.querySelector('a-sky');
         sky.setAttribute('src', '#pano');
       };
+
+      // const container = document.querySelector("#myEmbeddedScene");
+      // if (tab === "360") {
+      //   container.style.padding = "100px";
+      // } else {
+      //   container.style.display = "block";
+      // }
     }
     initTour();
-  }, []);
+  }, [tab]);
 
   return (
     <>
@@ -114,7 +121,7 @@ const ImageDisplay = () => {
         transitionProps={{ transition: 'slide-up', duration: 250, timingFunction: 'linear' }}
       >
         <Container size={1280}>
-          <Tabs defaultValue="gallery">
+          <Tabs defaultValue="gallery" onTabChange={(v) => setTab(v)} >
             <Tabs.List>
               <Tabs.Tab value="gallery" icon={<IconPhoto size="0.8rem" stroke={1.5} />}>
                 Gallery
@@ -138,44 +145,59 @@ const ImageDisplay = () => {
             </Tabs.Panel>
 
             <Tabs.Panel value="360" pt="xs">
-              <Card radius={16} p={0}>
-                {useIsClient() && (
-                  <div style={{ width: '100%', height: '600px' }}>
-                    <a-scene embedded='true'>
-                      <a-assets timeout="10000">
-                        <img crossOrigin="anonymous" alt='' id="pano" src='../pano.jpg' />
-                      </a-assets>
+              <Card withBorder radius={16} p={0} sx={{ display: 'block' }}>
+                <div id='myEmbeddedScene'>
+                  <a-scene embedded='true' style={{ width: '100%', height: '600px' }}>
+                    <a-assets timeout="10000">
+                      <img crossOrigin="anonymous" alt='' id="pano" src='../pano.jpg' />
+                    </a-assets>
 
-                      <a-sky src="#pano" /> 
+                    <a-sky src="#pano" /> 
 
-                      <a-entity position="0 1.8 0">
-                        <a-camera wasd-controls="acceleration: 1000; fly: true;" />
-                      </a-entity>
-                    </a-scene>
-                  </div>
-                )}
-              </Card>
+                    <a-entity>
+                      <a-camera wasd-controls="acceleration: 1000; fly: true;" />
+                    </a-entity>
+                  </a-scene>
+                </div>    
+              </Card> 
             </Tabs.Panel>
 
             <Tabs.Panel value="floor" pt="xs">
-              <Card withBorder radius={16} p={0}>
-                <Canvas 
-                  style={{ height: '70vh' }}
-                >
-                  <Suspense fallback={null}>
-                    <OrbitControls />
-                    <ambientLight intensity={0.5} />
-                    <pointLight position={[20, 30, 10]} intensity={1} />
-                    <pointLight position={[-10, -10, -10]} color='blue' />
-                    <PerspectiveCamera makeDefault fov={40} position={[-140, 0, 200]} />
-                    <ThreeDModel scale={0} position={[0, 0, 0]} rotation={[0, 0, 0]} />
+              <Card withBorder radius={16}>
+                {/* <a-scene> */}
+                  <Suspense fallback={<span>loading...</span>}>
+                    <Canvas 
+                      style={{ height: '70vh' }}
+                      frameloop="demand"
+                    >
+                      <OrbitControls />
+                      <ambientLight intensity={0.5} />
+                      <pointLight position={[20, 30, 10]} intensity={1} />
+                      <pointLight position={[-10, -10, -10]} color='blue' />
+                      <PerspectiveCamera makeDefault fov={40} position={[-140, 0, 200]} />
+                      <ThreeDModel scale={0} position={[0, 0, 0]} rotation={[0, 0, 0]} />
+                    </Canvas>
                   </Suspense>
-                </Canvas>
+                {/* </a-scene> */}
               </Card>
             </Tabs.Panel>
 
             <Tabs.Panel value="video" pt="xs">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/YVT7fN6hFcY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />                
+              <iframe
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/YVT7fN6hFcY" 
+                title="YouTube video player" 
+                allow="
+                  accelerometer;
+                  clipboard-write; 
+                  encrypted-media; 
+                  gyroscope; 
+                  picture-in-picture; 
+                  web-share
+                "
+                allowFullScreen
+              />                
             </Tabs.Panel>
           </Tabs>
         </Container>
