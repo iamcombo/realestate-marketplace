@@ -7,7 +7,6 @@ import {
   Drawer,
   Grid,
   Image,
-  LoadingOverlay,
   MediaQuery,
   Paper,
   SimpleGrid,
@@ -23,7 +22,6 @@ import {
 import { Suspense, useEffect, useState } from 'react';
 import { useIsClient } from '@/hooks';
 import CarouselWithThumnail from '@/components/CarouselWithThumnail';
-// import ThreeDModel from './3dModel';
 import dynamic from 'next/dynamic';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
@@ -143,7 +141,7 @@ const ImageDisplay = () => {
               <Card radius={16} p={0}>
                 {useIsClient() && (
                   <div style={{ width: '100%', height: '600px' }}>
-                    <a-scene embedded>
+                    <a-scene embedded='true'>
                       <a-assets timeout="10000">
                         <img crossOrigin="anonymous" alt='' id="pano" src='../pano.jpg' />
                       </a-assets>
@@ -173,18 +171,11 @@ const ImageDisplay = () => {
                     <ThreeDModel scale={0} position={[0, 0, 0]} rotation={[0, 0, 0]} />
                   </Suspense>
                 </Canvas>
-                {/* {useIsClient() && (
-                  <div style={{ width: '100%', height: '600px' }}>
-                    <a-scene embedded>
-                      <a-entity id="floor" position="0 1.8 0" />
-                    </a-scene>
-                  </div>
-                )} */}
               </Card>
             </Tabs.Panel>
 
             <Tabs.Panel value="video" pt="xs">
-              Video tab content
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/YVT7fN6hFcY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />                
             </Tabs.Panel>
           </Tabs>
         </Container>
