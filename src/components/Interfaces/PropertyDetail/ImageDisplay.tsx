@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unknown-property */
+import CarouselWithThumnail from '@/components/CarouselWithThumnail';
 import {
   Button,
   Card,
@@ -13,6 +14,8 @@ import {
   Stack,
   Tabs,
 } from '@mantine/core';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
 import {
   Icon360View,
   IconBadgeHd,
@@ -20,20 +23,18 @@ import {
   IconSquareRotatedForbid,
 } from '@tabler/icons-react';
 import dynamic from 'next/dynamic';
-import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useState } from 'react';
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import CarouselWithThumnail from '@/components/CarouselWithThumnail';
+
+import('aframe');
 
 const ThreeDModel = dynamic(() => import('./3dModel'), { ssr: false });
 
 const ImageDisplay = () => {
   const [opened, setOpened] = useState(false);
   const [tab, setTab] = useState<string | null>('');
-  
+
   useEffect(() => {
     function initTour() {
-      import("aframe");   
       // Set up the 360-degree panorama image
       const panoImg = document.querySelector('#pano');
       if (!panoImg) return;
@@ -76,7 +77,7 @@ const ImageDisplay = () => {
             </Button>
           </Paper>
         </Col>
-        <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
           <Col span={6} md={6}>
             <Stack>
               <Image
@@ -92,7 +93,7 @@ const ImageDisplay = () => {
             </Stack>
           </Col>
         </MediaQuery>
-        <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
           <Col span={24}>
             <SimpleGrid cols={2}>
               <Image
@@ -118,15 +119,25 @@ const ImageDisplay = () => {
         overlayProps={{ opacity: 0.5, blur: 4 }}
         position="bottom"
         size="100%"
-        transitionProps={{ transition: 'slide-up', duration: 250, timingFunction: 'linear' }}
+        transitionProps={{
+          transition: 'slide-up',
+          duration: 250,
+          timingFunction: 'linear',
+        }}
       >
         <Container size={1280}>
-          <Tabs defaultValue="gallery" onTabChange={(v) => setTab(v)} >
+          <Tabs defaultValue="gallery" onTabChange={(v) => setTab(v)}>
             <Tabs.List>
-              <Tabs.Tab value="gallery" icon={<IconPhoto size="0.8rem" stroke={1.5} />}>
+              <Tabs.Tab
+                value="gallery"
+                icon={<IconPhoto size="0.8rem" stroke={1.5} />}
+              >
                 Gallery
               </Tabs.Tab>
-              <Tabs.Tab value="360" icon={<Icon360View size="0.8rem" stroke={1.5} />}>
+              <Tabs.Tab
+                value="360"
+                icon={<Icon360View size="0.8rem" stroke={1.5} />}
+              >
                 360
               </Tabs.Tab>
               <Tabs.Tab
@@ -135,7 +146,10 @@ const ImageDisplay = () => {
               >
                 3D
               </Tabs.Tab>
-              <Tabs.Tab value="video" icon={<IconBadgeHd size="0.8rem" stroke={1.5} />}>
+              <Tabs.Tab
+                value="video"
+                icon={<IconBadgeHd size="0.8rem" stroke={1.5} />}
+              >
                 Video
               </Tabs.Tab>
             </Tabs.List>
@@ -146,54 +160,62 @@ const ImageDisplay = () => {
 
             <Tabs.Panel value="360" pt="xs">
               <Card withBorder radius={16} p={0} sx={{ display: 'block' }}>
-                <div id='myEmbeddedScene'>
-                  <a-scene embedded='true' style={{ width: '100%', height: '600px' }}>
+                <div id="myEmbeddedScene">
+                  <a-scene
+                    embedded="true"
+                    style={{ width: '100%', height: '600px' }}
+                  >
                     <a-assets timeout="10000">
-                      <img crossOrigin="anonymous" alt='' id="pano" src='../pano.jpg' />
+                      <img
+                        crossOrigin="anonymous"
+                        alt=""
+                        id="pano"
+                        src="../pano.jpg"
+                      />
                     </a-assets>
 
-                    <a-sky src="#pano" /> 
+                    <a-sky src="#pano" />
 
                     <a-entity>
                       <a-camera wasd-controls="acceleration: 1000; fly: true;" />
                     </a-entity>
                   </a-scene>
-                </div>    
-              </Card> 
+                </div>
+              </Card>
             </Tabs.Panel>
 
             <Tabs.Panel value="floor" pt="xs">
               <Card withBorder radius={16} bg="slate.2">
                 {/* <a-scene> */}
-                  <Suspense fallback={<span>loading...</span>}>
-                    <Canvas 
-                      style={{ height: '70vh' }}
-                      frameloop="demand"
-                      shadows
-                      camera={{ position: [0, 0, 10] }} 
-                    >
-                      <OrbitControls
-                        makeDefault 
-                        minPolarAngle={Math.PI / 2} 
-                        maxPolarAngle={Math.PI / 2} 
-                      />
-                      <ambientLight intensity={0.5} />
-                      <pointLight position={[20, 30, 10]} intensity={1} />
-                      <pointLight position={[-10, -10, -10]} color='blue' />
-                      <PerspectiveCamera makeDefault position={[0, 0, 200]} />
-                      <ThreeDModel />
-                    </Canvas>
-                  </Suspense>
+                <Suspense fallback={<span>loading...</span>}>
+                  <Canvas
+                    style={{ height: '70vh' }}
+                    frameloop="demand"
+                    shadows
+                    camera={{ position: [0, 0, 10] }}
+                  >
+                    <OrbitControls
+                      makeDefault
+                      minPolarAngle={Math.PI / 2}
+                      maxPolarAngle={Math.PI / 2}
+                    />
+                    <ambientLight intensity={0.5} />
+                    <pointLight position={[20, 30, 10]} intensity={1} />
+                    <pointLight position={[-10, -10, -10]} color="blue" />
+                    <PerspectiveCamera makeDefault position={[0, 0, 200]} />
+                    <ThreeDModel />
+                  </Canvas>
+                </Suspense>
                 {/* </a-scene> */}
               </Card>
             </Tabs.Panel>
 
             <Tabs.Panel value="video" pt="xs">
               <iframe
-                width="100%" 
-                height="720px" 
-                src="https://www.youtube.com/embed/YVT7fN6hFcY" 
-                title="YouTube video player" 
+                width="100%"
+                height="720px"
+                src="https://www.youtube.com/embed/YVT7fN6hFcY"
+                title="YouTube video player"
                 allow="
                   accelerometer;
                   clipboard-write; 
@@ -203,7 +225,7 @@ const ImageDisplay = () => {
                   web-share
                 "
                 allowFullScreen
-              />                
+              />
             </Tabs.Panel>
           </Tabs>
         </Container>

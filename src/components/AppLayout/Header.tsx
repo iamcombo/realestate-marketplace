@@ -1,7 +1,9 @@
 import logo from '@/assets/logo.png';
+import { useIsClient } from '@/hooks';
 import {
   Avatar,
   Burger,
+  Button,
   Col,
   Container,
   Grid,
@@ -12,15 +14,18 @@ import {
   Title,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { IconBell } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useAccount } from 'wagmi';
 
 import Navbar from './Navbar';
 
 const HeaderComponent = () => {
   const { asPath } = useRouter();
+  const { address } = useAccount();
   const [opened, { toggle }] = useDisclosure(false);
   const isPath = (path: string) => path === asPath;
   const label = opened ? 'Close navigation' : 'Open navigation';
@@ -47,11 +52,6 @@ const HeaderComponent = () => {
                     Buy
                   </Text>
                 </Link>
-                <Link href="/listing/selectType">
-                  <Text fz={16} fw={isPath('/listing') ? 600 : 500}>
-                    Sell
-                  </Text>
-                </Link>
                 <Link href="/">
                   <Text fz={16} fw={isPath('/rent') ? 600 : 500}>
                     Rent
@@ -66,15 +66,24 @@ const HeaderComponent = () => {
             </Col>
           </MediaQuery>
           <Col span={12} sm={4} md={8}>
-            <Group position="right">
-              <IconBell stroke={1.5} />
-              <Link href="/profile">
-                <Avatar
-                  radius="xl"
-                  src="https://avatars.githubusercontent.com/u/10353856?s=460&u=88394dfd67727327c1f7670a1764dc38a8a24831&v=4"
-                />
-              </Link>
-            </Group>
+            {useIsClient() && address && (
+              <Group position="right">
+                <IconBell stroke={1.5} />
+                <Link href="/profile">
+                  <Avatar
+                    radius="xl"
+                    src="https://avatars.githubusercontent.com/u/10353856?s=460&u=88394dfd67727327c1f7670a1764dc38a8a24831&v=4"
+                  />
+                </Link>
+              </Group>
+            )}
+            {useIsClient() && !address && (
+              <Group position="right">
+                <Link href="/signIn">
+                  <Button radius={8}>Connect wallet</Button>
+                </Link>
+              </Group>
+            )}
           </Col>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Col span={4}>

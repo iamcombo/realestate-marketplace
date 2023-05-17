@@ -97,13 +97,11 @@ const PropertyDetail = ({ data }: { data: IMintData[] }) => {
           value: parseEther(data[+id].price as unknown as `${number}`),
         }
       );
-      console.log(trx);
+      // console.log(trx);
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(parseEther(data[+id].price as `${number}`));
 
   // const { config } = usePrepareContractWrite({
   //   address: ESTATE_CONTRACT.ADDRESS,
@@ -123,19 +121,19 @@ const PropertyDetail = ({ data }: { data: IMintData[] }) => {
 
   // const { status, write } = useContractWrite(config);
 
-  console.log(
-    address,
-    '\n',
-    data[+id].lister,
-    '\n',
-    data[+id].price,
-    '\n',
-    data[+id].uri,
-    '\n',
-    data[+id].nonce,
-    '\n',
-    data[+id].signature
-  );
+  // console.log(
+  //   address,
+  //   '\n',
+  //   data[+id].lister,
+  //   '\n',
+  //   data[+id].price,
+  //   '\n',
+  //   data[+id].uri,
+  //   '\n',
+  //   data[+id].nonce,
+  //   '\n',
+  //   data[+id].signature
+  // );
 
   // const handleSale = async () => {
   //   try {
@@ -186,7 +184,7 @@ const PropertyDetail = ({ data }: { data: IMintData[] }) => {
           <Card withBorder radius={16} sx={{ position: 'initial' }}>
             <Text color="dimmed">Price</Text>
             <Text fz={24} weight={800} c="primary.6">
-              $400,500 USD
+              {data[+id].price} ETH
             </Text>
             <Button
               fullWidth
