@@ -1,13 +1,14 @@
 import { AppShell } from '@mantine/core';
-import type { ReactNode } from 'react';
 import { useRouter } from 'next/router';
+import type { ReactNode } from 'react';
+
+import PageRouteTransition from '../PageRoute/PageRouteTransition';
 import Footer from './Footer';
 import HeaderComponent from './Header';
-import PageRouteTransition from '../PageRoute/PageRouteTransition';
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const { pathname } = useRouter();
-  
+
   return (
     <AppShell
       header={<HeaderComponent />}
@@ -21,9 +22,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
         },
       })}
     >
-      <PageRouteTransition keyProp={pathname}>
-        {children}
-      </PageRouteTransition>
+      <PageRouteTransition keyProp={pathname}>{children}</PageRouteTransition>
     </AppShell>
   );
 };

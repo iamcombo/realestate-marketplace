@@ -1,12 +1,12 @@
-import { AnimatePresence, motion } from "framer-motion";
-import type { ReactNode } from "react";
+import { AnimatePresence, motion } from 'framer-motion';
+import type { ReactNode } from 'react';
 
 const PageRouteTransition = ({
   keyProp,
-  children
+  children,
 }: {
-  keyProp?: string,
-  children: ReactNode
+  keyProp?: string;
+  children: ReactNode;
 }) => {
   return (
     <AnimatePresence mode="wait">

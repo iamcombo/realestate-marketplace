@@ -1,3 +1,4 @@
+import logo from '@/assets/logo.png';
 import {
   ActionIcon,
   Box,
@@ -17,7 +18,6 @@ import {
   IconPhoneFilled,
 } from '@tabler/icons-react';
 import Image from 'next/image';
-import logo from '@/assets/logo.png';
 
 const Footer = () => (
   <Box>
@@ -35,7 +35,7 @@ const Footer = () => (
             and publishing industries for previewing layouts and visual mockups.
           </Text>
         </Col>
-        <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
           <Col md={8}>
             <Group position="center">
               <Stack spacing={8}>

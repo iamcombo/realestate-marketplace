@@ -1,8 +1,7 @@
-'use client';
-
 import { PropertyInfo } from '@/components';
 import ImageDisplay from '@/components/Interfaces/PropertyDetail/ImageDisplay';
-import { faker } from '@faker-js/faker';
+import { ESTATE_CONTRACT } from '@/constants/contracts';
+import connectContract from '@/utils/connectContract';
 import {
   Button,
   Card,
@@ -23,7 +22,10 @@ import {
   IconShare3,
 } from '@tabler/icons-react';
 import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js';
+import { useRouter } from 'next/router';
 import React from 'react';
+import { parseEther } from 'viem';
+import { useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi';
 
 Chart.register(CategoryScale, LinearScale, BarElement);
 const center = {
@@ -46,26 +48,23 @@ const labels = [
   'December',
 ];
 
-const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() =>
-        faker.datatype.number({ min: 200000, max: 500000 })
-      ),
-      backgroundColor: '#228be6',
-      borderRadius: 8,
-    },
-  ],
-};
+interface IMintData {
+  lister: string;
+  price: string;
+  uri: string;
+  nonce: string;
+  signature: string;
+}
 
-const PropertyDetail = () => {
+const PropertyDetail = ({ data }: { data: IMintData[] }) => {
+  const { address } = useAccount();
+  const { query } = useRouter();
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: '',
   });
 
   const [map, setMap] = React.useState<any>(null);
+  const [id, setId] = React.useState(query?.id || 0);
 
   const onLoad = React.useCallback((_map: any) => {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -79,6 +78,85 @@ const PropertyDetail = () => {
   const onUnmount = React.useCallback((_map: any) => {
     setMap(null);
   }, []);
+
+  const handleContract = async () => {
+    try {
+      const { Contract } = await connectContract(
+        ESTATE_CONTRACT.ADDRESS,
+        ESTATE_CONTRACT.ABI
+      );
+      if (!Contract) return;
+      const trx = await Contract.sale(
+        address,
+        data[+id].lister,
+        data[+id].price,
+        data[+id].uri,
+        data[+id].nonce,
+        data[+id].signature,
+        {
+          value: parseEther(data[+id].price as unknown as `${number}`),
+        }
+      );
+      console.log(trx);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(parseEther(data[+id].price as `${number}`));
+
+  // const { config } = usePrepareContractWrite({
+  //   address: ESTATE_CONTRACT.ADDRESS,
+  //   abi: ESTATE_CONTRACT.ABI,
+  //   functionName: 'sale',
+  //   args: [
+  //     address,
+  //     data[+id].lister,
+  //     data[+id].price,
+  //     data[+id].uri,
+  //     data[+id].nonce,
+  //     data[+id].signature,
+  //   ],
+  //   from: address,
+  //   value: parseEther(data[+id].price as `${number}`),
+  // });
+
+  // const { status, write } = useContractWrite(config);
+
+  console.log(
+    address,
+    '\n',
+    data[+id].lister,
+    '\n',
+    data[+id].price,
+    '\n',
+    data[+id].uri,
+    '\n',
+    data[+id].nonce,
+    '\n',
+    data[+id].signature
+  );
+
+  // const handleSale = async () => {
+  //   try {
+  //     const { Contract } = connectContract(
+  //       ESTATE_CONTRACT.ADDRESS,
+  //       ESTATE_CONTRACT.ABI
+  //     );
+  //     if (!Contract) return;
+  //     const trx = await Contract.sale(
+  //       address,
+  //       data[+id].lister,
+  //       data[+id].price,
+  //       data[+id].uri,
+  //       data[+id].nonce,
+  //       data[+id].signature,
+  //       { value: utils.parseEther(data[+id].price) }
+  //     );
+  //   } catch (error: any) {
+  //     console.log(error?.reason);
+  //   }
+  // };
 
   return (
     <Container size={1280} my={40}>
@@ -110,7 +188,14 @@ const PropertyDetail = () => {
             <Text fz={24} weight={800} c="primary.6">
               $400,500 USD
             </Text>
-            <Button fullWidth size="md" mt={24} radius={8}>
+            <Button
+              fullWidth
+              size="md"
+              mt={24}
+              radius={8}
+              // loading={status === 'loading'}
+              onClick={handleContract}
+            >
               Apply now
             </Button>
             <Divider my={16} />
@@ -167,3 +252,20 @@ const PropertyDetail = () => {
 };
 
 export default PropertyDetail;
+
+export const getServerSideProps = async () => {
+  const response = await fetch('http://localhost:3000/api/storage', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+
+  return {
+    props: {
+      data,
+    }, // will be passed to the page component as props
+  };
+};

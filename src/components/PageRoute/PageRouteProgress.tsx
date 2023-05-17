@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { NavigationProgress, nprogress } from "@mantine/nprogress";
+import { NavigationProgress, nprogress } from '@mantine/nprogress';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const PageRouteProgress = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleStart = (url: string) => url !== router.asPath && nprogress.start();
+    const handleStart = (url: string) =>
+      url !== router.asPath && nprogress.start();
     const handleComplete = () => nprogress.complete();
 
     router.events.on('routeChangeStart', handleStart);
@@ -20,9 +21,7 @@ const PageRouteProgress = () => {
     };
   }, [router.asPath]);
 
-  return (
-    <NavigationProgress autoReset />
-  );
+  return <NavigationProgress autoReset />;
 };
 
 export default PageRouteProgress;
