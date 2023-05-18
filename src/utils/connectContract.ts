@@ -12,10 +12,10 @@ const connectContract = (contractAddress: string, contractABI: object[]) => {
       // instantiating new connection to the contract
       Contract = new ethers.Contract(contractAddress, contractABI, signer);
     } else {
-      console.log("Ethereum object doesn't exist!");
+      // console.log("Ethereum object doesn't exist!");
     }
   } catch (error) {
-    console.log('ERROR:', error);
+    // console.log('ERROR:', error);
   }
   return { Contract, Provider };
 };

@@ -34,7 +34,7 @@ const Rainbow = ({ children }: { children: ReactNode }) => {
     [
       publicProvider(),
       jsonRpcProvider({
-        rpc: (chain) => ({ http: 'http://127.0.0.1:8545' }),
+        rpc: () => ({ http: 'http://127.0.0.1:8545' }),
       }),
     ]
   );

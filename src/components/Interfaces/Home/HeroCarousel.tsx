@@ -1,10 +1,10 @@
-import { useRef } from "react";
-import { Carousel } from "@mantine/carousel";
+import CardSlide from '@/components/Cards/CardSlide';
+import { data } from '@/constants/data';
+import { Carousel } from '@mantine/carousel';
+import { rem } from '@mantine/core';
 // import { useMediaQuery } from "@mantine/hooks";
 import Autoplay from 'embla-carousel-autoplay';
-import { rem, useMantineTheme } from "@mantine/core";
-import CardSlide from "@/components/Cards/CardSlide";
-import { data } from "@/constants/data";
+import { useRef } from 'react';
 
 const HeroCarousel = () => {
   // const theme = useMantineTheme();

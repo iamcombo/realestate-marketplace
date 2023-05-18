@@ -1,4 +1,5 @@
 import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { Poppins } from 'next/font/google';
 import type { CSSProperties, ReactNode } from 'react';
 
@@ -39,6 +40,7 @@ const AppWrapper = ({ children }: { children: ReactNode }) => {
       }}
     >
       <Rainbow>
+        <Notifications position="top-right" />
         <PageRouteProgress />
         {children}
       </Rainbow>

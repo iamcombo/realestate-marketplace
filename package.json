@@ -18,6 +18,7 @@
     "@mantine/dates": "^6.0.9",
     "@mantine/hooks": "^6.0.8",
     "@mantine/next": "^6.0.8",
+    "@mantine/notifications": "^6.0.11",
     "@mantine/nprogress": "^6.0.9",
     "@next/bundle-analyzer": "^13.3.1",
     "@rainbow-me/rainbowkit": "^1.0.0",

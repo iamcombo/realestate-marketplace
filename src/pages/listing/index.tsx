@@ -12,47 +12,10 @@ import {
   Title,
 } from '@mantine/core';
 import { IconCurrencyDollar } from '@tabler/icons-react';
-import { useSignTypedData } from 'wagmi';
 
 const Listing = () => {
-  // All properties on a domain are optional
-  const domain = {
-    name: 'Test Estate Contract',
-    version: '1.0.0',
-    chainId: 31337,
-    verifyingContract: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
-  } as const;
-
-  // The named list of all type definitions
-  const types = {
-    NFTForSale: [
-      { name: 'lister', type: 'address' },
-      { name: 'price', type: 'uint256' },
-      { name: 'uri', type: 'string' },
-      { name: 'nonce', type: 'uint256' },
-    ],
-  };
-
-  const sale = {
-    price: '1000',
-    uri: 'https://example.com/0',
-  };
-
-  const { data, error, signTypedData, isLoading } = useSignTypedData({
-    domain,
-    types,
-    // primaryType: 'Mail',
-    value: {
-      ...sale,
-      lister: '0xdF3e18d64BC6A983f673Ab319CCaE4f1a57C7097',
-      nonce: '0',
-    },
-  });
-  console.log(data);
-
   return (
     <Container size={1280} my={40}>
-      <Button onClick={signTypedData}>sign</Button>
       <Grid columns={24} gutterMd={40}>
         <Col md={14}>
           <Title order={4} mb={8}>

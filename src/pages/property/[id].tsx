@@ -1,6 +1,8 @@
 import { PropertyInfo } from '@/components';
 import ImageDisplay from '@/components/Interfaces/PropertyDetail/ImageDisplay';
+import { ModalConfirmation } from '@/components/Modal';
 import { ESTATE_CONTRACT } from '@/constants/contracts';
+import useAsync from '@/hooks/useAsync';
 import connectContract from '@/utils/connectContract';
 import {
   Button,
@@ -14,6 +16,7 @@ import {
   Text,
 } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
+import { notifications } from '@mantine/notifications';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import {
   IconDots,
@@ -21,32 +24,15 @@ import {
   IconMapPinFilled,
   IconShare3,
 } from '@tabler/icons-react';
-import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js';
 import { useRouter } from 'next/router';
-import React from 'react';
+import { useCallback, useState } from 'react';
 import { parseEther } from 'viem';
-import { useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi';
+import { useAccount } from 'wagmi';
 
-Chart.register(CategoryScale, LinearScale, BarElement);
 const center = {
   lat: 11.5564,
   lng: 104.9282,
 };
-
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'Augest',
-  'September',
-  'October',
-  'November',
-  'December',
-];
 
 interface IMintData {
   lister: string;
@@ -63,10 +49,10 @@ const PropertyDetail = ({ data }: { data: IMintData[] }) => {
     googleMapsApiKey: '',
   });
 
-  const [map, setMap] = React.useState<any>(null);
-  const [id, setId] = React.useState(query?.id || 0);
+  const [modalConfirm, setModalConfirm] = useState(false);
+  const [map, setMap] = useState<any>(null);
 
-  const onLoad = React.useCallback((_map: any) => {
+  const onLoad = useCallback(() => {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
     if (!map) return;
     const bounds = new window.google.maps.LatLngBounds(center);
@@ -75,33 +61,65 @@ const PropertyDetail = ({ data }: { data: IMintData[] }) => {
     setMap(map);
   }, []);
 
-  const onUnmount = React.useCallback((_map: any) => {
+  const onUnmount = useCallback(() => {
     setMap(null);
   }, []);
 
-  const handleContract = async () => {
-    try {
-      const { Contract } = await connectContract(
-        ESTATE_CONTRACT.ADDRESS,
-        ESTATE_CONTRACT.ABI
-      );
-      if (!Contract) return;
-      const trx = await Contract.sale(
-        address,
-        data[+id].lister,
-        data[+id].price,
-        data[+id].uri,
-        data[+id].nonce,
-        data[+id].signature,
-        {
-          value: parseEther(data[+id].price as unknown as `${number}`),
-        }
-      );
-      // console.log(trx);
-    } catch (error) {
-      console.log(error);
-    }
+  const Sale = () => {
+    const { Contract } = connectContract(
+      ESTATE_CONTRACT.ADDRESS,
+      ESTATE_CONTRACT.ABI
+    );
+
+    if (!Contract) return;
+    if (!query.id) return;
+    const id = +query.id;
+
+    return Contract.sale(
+      address,
+      data[+id].lister,
+      data[+id].price,
+      data[+id].uri,
+      data[+id].nonce,
+      data[+id].signature,
+      {
+        value: parseEther(data[+id].price as unknown as `${number}`),
+      }
+    );
   };
+
+  const { execute: handleSale, status } = useAsync(
+    Sale,
+    async (trx) => {
+      notifications.show({
+        id: 'load-data',
+        loading: true,
+        title: 'Transaction in progress',
+        message: 'Transaction will be completed in seconds.',
+        autoClose: false,
+        withCloseButton: false,
+        radius: 'md',
+      });
+      await trx.wait();
+      notifications.update({
+        id: 'load-data',
+        title: 'Successfully',
+        message: 'Transaction Completed',
+        radius: 'md',
+      });
+      setModalConfirm(false);
+    },
+    (err) => {
+      notifications.show({
+        title: 'Transaction failed',
+        message: err?.reason,
+        color: 'red',
+        radius: 'md',
+      });
+      setModalConfirm(false);
+    },
+    false
+  );
 
   // const { config } = usePrepareContractWrite({
   //   address: ESTATE_CONTRACT.ADDRESS,
@@ -184,15 +202,15 @@ const PropertyDetail = ({ data }: { data: IMintData[] }) => {
           <Card withBorder radius={16} sx={{ position: 'initial' }}>
             <Text color="dimmed">Price</Text>
             <Text fz={24} weight={800} c="primary.6">
-              {data[+id].price} ETH
+              {query.id && data[+query.id].price} ETH
             </Text>
             <Button
               fullWidth
               size="md"
               mt={24}
               radius={8}
-              // loading={status === 'loading'}
-              onClick={handleContract}
+              loading={status === 'pending'}
+              onClick={() => setModalConfirm(true)}
             >
               Apply now
             </Button>
@@ -245,6 +263,13 @@ const PropertyDetail = ({ data }: { data: IMintData[] }) => {
       ) : (
         <div />
       )}
+
+      <ModalConfirmation
+        modal={modalConfirm}
+        setModal={setModalConfirm}
+        status={status}
+        callbackFn={handleSale}
+      />
     </Container>
   );
 };

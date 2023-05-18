@@ -3,7 +3,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const signIn = () => {
   return (
-    <Container size={520}>
+    <Container size={520} my={40}>
       <Card radius={16} shadow="sm" p={24} withBorder>
         <Title order={3} align="center">
           Connect Wallet
